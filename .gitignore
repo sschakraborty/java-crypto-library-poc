@@ -6,3 +6,5 @@ build
 
 # Ignore IntelliJ IDEA config files
 .idea
+
+*.hprof
