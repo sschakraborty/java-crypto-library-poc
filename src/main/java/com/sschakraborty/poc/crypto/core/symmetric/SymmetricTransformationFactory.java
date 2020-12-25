@@ -13,23 +13,6 @@ import java.security.Provider;
 import java.util.Objects;
 
 public class SymmetricTransformationFactory {
-    public enum Algorithm {
-        TRIPLE_DES(TripleDESTransformation.class),
-        DES(DESTransformation.class),
-        BLOWFISH(BlowfishTransformation.class),
-        AES(AESTransformation.class);
-
-        private final Class<? extends Transformation> clazz;
-
-        Algorithm(Class<? extends Transformation> clazz) {
-            this.clazz = clazz;
-        }
-
-        public Class<? extends Transformation> getClazz() {
-            return clazz;
-        }
-    }
-
     public Transformation create(Algorithm algorithm, Provider provider, byte[] secretKey, byte[] initializationVector) throws CryptoException {
         Objects.requireNonNull(algorithm, "Algorithm cannot be null!");
         Objects.requireNonNull(provider, "Provider cannot be null!");
@@ -54,5 +37,22 @@ public class SymmetricTransformationFactory {
         Objects.requireNonNull(provider, "Provider cannot be null!");
         Objects.requireNonNull(secretKey, "Secret symmetric key cannot be null!");
         return new GenericSymmetricTransformation(cipherName, algorithmName, provider, secretKey, initializationVector);
+    }
+
+    public enum Algorithm {
+        TRIPLE_DES(TripleDESTransformation.class),
+        DES(DESTransformation.class),
+        BLOWFISH(BlowfishTransformation.class),
+        AES(AESTransformation.class);
+
+        private final Class<? extends Transformation> clazz;
+
+        Algorithm(Class<? extends Transformation> clazz) {
+            this.clazz = clazz;
+        }
+
+        public Class<? extends Transformation> getClazz() {
+            return clazz;
+        }
     }
 }

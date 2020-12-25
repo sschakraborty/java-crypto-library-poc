@@ -18,6 +18,8 @@ repositories {
 }
 
 dependencies {
+    api("org.bouncycastle:bcprov-jdk16:1.46")
+
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
 
